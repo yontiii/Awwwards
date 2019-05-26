@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'trophy',
     'url_or_relative_url_field',
     'tinymce',
+    'accounts',
 ]
 
 MIDDLEWARE = [
