@@ -1,0 +1,12 @@
+confusable-homoglyphs==3.2.0
+Django==1.11
+django-bootstrap4==0.0.8
+django-filebrowser==3.9.2
+django-grappelli==2.10.4
+django-registration==2.4.1
+django-tinymce==2.8.0
+django-tinymce-4==0.0.24
+django-url-or-relative-url-field==0.1.1
+Pillow==6.0.0
+psycopg2==2.8.2
+pytz==2019.1
