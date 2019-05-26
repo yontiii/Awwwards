@@ -9,16 +9,16 @@ new WOW().init()
 <div class="row">
 {% for project in projects %}
 <div class="col-md-4">
-<div class="card-deck wow fadeInLeft"  style="margin:5%;" data-aos='fade-up'>
+<div class="card-group wow fadeInLeft"  style="margin:5%;" data-aos='fade-up'>
         <div class="view overlay zoom ">
                 <img src="{{project.image_landing.url}}" class="card-img-top">
-                <div class="mask flex-center rgba-blue-light">
+                <div class="mask flex-center rgba-cyan-strong">
                     <a href="{{project.link}}" class="btn btn-pink" target="_blank" >VIEW <i class="far fa-chevron-double-right"></i>  </a>
                 </div>
         </div>
 
 <div class="card-body">
-    <h5 class="strong-text"> <strong>{{project.title}}</strong> </h5> 
+    <a href="{% url 'projects' project.pk %}"><h5 class="strong-text"> <strong>{{project.title}}</strong> </h5> </a>
     <h6>By  {{project.user}}</h6>
 </div>
 

@@ -13,10 +13,26 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
+<style>
+.main{
+    background: url('{{projects.image_landing.url}}');
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+}
+</style>
 <body>
  {% include 'navbar.html' %}
 
-
+<div class="container">
+        <div class="view overlay zoom ">
+                <img src="{{project.image_landing.url}}"  width='100%'
+                height= '85vh'>
+                <div class="mask flex-center rgba-cyan-strong">
+                    <a href="{{project.link}}" class="btn btn-pink" target="_blank" >VIEW <i class="far fa-chevron-double-right"></i>  </a>
+                </div>
+        </div>
+</div>
 
 
 
