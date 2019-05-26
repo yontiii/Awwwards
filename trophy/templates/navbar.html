@@ -43,8 +43,13 @@
             </form>
           </div>
           <div class="nav-right">
+            {% if user.is_authenticated %}
+            <a href="" class="accounts">Log Out</a>
+            {% else %}
             <a href="" class="accounts">Sign In</a>
             <a href="" class="accounts">Log In</a>
+            {%  endif %}
+            
             <a href="" id="projects">SUBMIT PROJECT</a>
     
             
