@@ -8,7 +8,7 @@ from url_or_relative_url_field.fields import URLOrRelativeURLField
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
-    profile_photo = models.ImageField(default='default.jpg',upload_to='profiles/')
+    profile_photo = models.ImageField(default='default.png',upload_to='profiles/')
     bio = HTMLField(max_length=500,default='Tell Me Something')
     website = URLOrRelativeURLField() 
     phone_number = models.CharField(max_length=10,default=12345678)
