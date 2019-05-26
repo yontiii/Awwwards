@@ -7,20 +7,25 @@ new WOW().init()
 <h2 class="text-muted text-center">TOP SITES</h2>
 </div>
 <div class="row">
+{% for project in projects %}
 <div class="col-md-4">
 <div class="card wow fadeInLeft" data-wow-delay="0.6s" style="margin:15%;">
         <div class="view overlay zoom ">
-                <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top">
+                <img src="{{project.landing_image.url}}" class="card-img-top">
                 <div class="mask flex-center rgba-blue-light">
-                    <a href="" class="btn btn-pink" >VIEW <i class="far fa-chevron-double-right"></i>  </a>
+                    <a href="{{project.link}}" class="btn btn-pink" >VIEW <i class="far fa-chevron-double-right"></i>  </a>
                 </div>
         </div>
 
 <div class="card-body">
-    <h6 class="strong-text"> <strong>Github Search</strong> </h6> 
-    <h6>By Martino Aguerro</h6>
+    <h6 class="strong-text"> <strong>{{project.title}}</strong> </h6> 
+    <h6>By Martino {{project.user}}</h6>
 </div>
 
 </div>
+
 </div>
+{% endfor %}
+</div>
+
 {% endblock %}
