@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+<script>
+new WOW().init()
+</script>
 <div class="container">
 <h2 class="text-muted text-center">TOP SITES</h2>
 </div>
 <div class="row">
 <div class="col-md-4">
-<div class="card" style="margin:15%;">
-        <div class="view overlay zoom">
+<div class="card wow fadeInLeft" data-wow-delay="0.6s" style="margin:15%;">
+        <div class="view overlay zoom ">
                 <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top">
                 <div class="mask flex-center rgba-blue-light">
                     <a href="" class="btn btn-pink" >VIEW <i class="far fa-chevron-double-right"></i>  </a>
