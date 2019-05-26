@@ -11,7 +11,7 @@ def signup(request):
                 return render(request,'accounts/signup.html',{'error':'Username Has already Been taken'})
             except User.DoesNotExixt:
                 user = User.objects.create_user(request.POST['username'],password=request.POST['password1'])
-                auth.login.(request,user)
+                auth.login(request,user)
                 
         else:
             return render(request,'accounts/signup.html',{'error':'Passwords must match'})

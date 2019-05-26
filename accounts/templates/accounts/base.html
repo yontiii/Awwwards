@@ -13,7 +13,18 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
+<style>
+        body{
+            margin:0;
+            padding: 0;
+            background-image: url('https://images.pexels.com/photos/2098604/pexels-photo-2098604.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            background-size:cover;
+            height:100vh;
+            width:100%;
+        }
+    </style>
 <body>
+    {% include 'navbar.html' %}
 
 {% block content %}
 {% endblock %}
