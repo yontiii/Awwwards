@@ -12,21 +12,21 @@
     </div>
     <div class="col-md-4 " id="form" style="color:white;
     font-family: sans-serif;margin-top: 20px;background: 	#000000;opacity:0.9;" >
-        <h2 style="border-bottom:6px solid #4DD0E1;margin-bottom: 10px;padding: 10px;">Log In</h2>
-        <form action="/accounts/login/" method="POST" style="color:#757575;" class="login-box">
+        <h2 style="border-bottom:6px solid #4DD0E1;margin-bottom: 10px;padding: 10px;">Sign Up</h2>
+        <form action="/accounts/register/" method="POST" style="color:#757575;" class="login-box">
             {% csrf_token %}
-            {% bootstrap_form form %}
+            {% bootstrap_form form layout='inline' %}
 
             <div class="form-group">
                 <input type="submit" class="btn btn-info btn-rounded waves-effect text-center" value="Log In"
                     style="text-align:center;">
             </div>
-            <input type="hidden" name="next" value="/">
+            <input type="hidden" name="next" value="{{next}}">
         </form>
         <div class="panel panel-default text-center">
             <hr>
-            <h6 class="text-center  white-text text-muted">Don't have an account?</h6>
-            <a href="/accounts/register" class="btn btn-blue btn-md text-center sm">Sign Up Here</a>
+            <h6 class="text-center  white-text text-muted">Have an account?</h6>
+            <a href="/accounts/login" class="btn btn-blue btn-md text-center sm">Log In Here</a>
 
         </div>
     </div>
