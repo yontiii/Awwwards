@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
+from url_or_relative_url_field.fields import URLOrRelativeURLField
 
 # Create your models here.
 class Profile(models.Model):
@@ -28,12 +29,12 @@ class Profile(models.Model):
     
     
 class Projects(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     profile = models.ForeignKey(User,on_delete=models.CASCADE) 
     title = models.CharField(max_length=20,blank=True)
     image_landing = models.ImageField(upload_to='landing/')
     description = models.TextField(max_length=200,blank=True)
-    link = models.CharField(max_length=20)
+    link = models.URLOrRelativeURLField(max_length=200)
     
     
     @classmethod

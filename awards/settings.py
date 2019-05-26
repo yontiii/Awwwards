@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trophy',
+    'url_or_relative_url_field',
 ]
 
 MIDDLEWARE = [
