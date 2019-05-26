@@ -8,3 +8,14 @@ def home(request):
         'projects':projects,
     }
     return render(request,'home.html',context)
+
+
+def projects(request,project_id):
+    projects = Projects.objects.get(id=project_id)
+    
+    context = {
+        'projects':projects,
+    }
+    
+    return render(request,'single_post.html',context)
+    
