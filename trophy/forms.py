@@ -4,4 +4,11 @@ from .models import Profile,Projects
 
 class ProjectUploadForm(forms.ModelForm):
     class Meta:
+        model = Projects
         fields = ('title','image_landing','description', 'link')
+        
+        
+class ProfileEditForm(models.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('profile_photo','bio','website','phonenumber')
