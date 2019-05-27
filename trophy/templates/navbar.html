@@ -49,7 +49,7 @@
             <a href="" class="accounts">Sign In</a>
             <a href="" class="accounts">Log In</a>
             {%  endif %}
-            <a href="" class="avatar">
+            <a href="{% url 'profile' username=user %}" class="avatar">
               <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="45" />
             </a>
             <a href="" id="projects">SUBMIT PROJECT</a> 
