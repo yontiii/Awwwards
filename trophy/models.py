@@ -48,11 +48,7 @@ class Projects(models.Model):
     link = URLOrRelativeURLField(max_length=200)
     pub_date = models.DateTimeField(auto_now_add=True)
     
-    
-    @classmethod
-    def search_by_projects(cls,search_term):
-        projects = cls.objects.filter(title__icontains=search_term)
-        return projects 
+
     
     
     @classmethod
@@ -65,6 +61,10 @@ class Projects(models.Model):
     def search_by_projects(cls,search_term):
         projects = cls.objects.filter(title__icontains=search_term)
         return projects 
+    
+    
+    def __str__(self):
+        return self.title
     
     
     

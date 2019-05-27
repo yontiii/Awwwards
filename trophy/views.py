@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Profile,Projects
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     projects = Projects.objects.all()
