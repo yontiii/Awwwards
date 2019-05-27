@@ -24,6 +24,15 @@ class Profile(models.Model):
         instance.profile.save()  
         
     
+    @classmethod
+    def get_by_id(cls,id):
+        profile = Profile.objects.get(user = id)
+        return profile
+    
+    @classmethod
+    def filter_by_id(cls,id):
+        profile = Profile.objects.filter(user = id).first()
+        return profile
     
     def __str__(self):
         return self.bio
