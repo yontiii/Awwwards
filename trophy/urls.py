@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^projects/(\d+)',views.projects,name='projects'),
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
     url('^uploads/',views.post_site,name='post_site'),
+    url(r'^api/profiles/$', views.ProfileList.as_view()),
+    url(r'^api/projects/$', views.ProjectsList.as_view()),
     
 ]
 
