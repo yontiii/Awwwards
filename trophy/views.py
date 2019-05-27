@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from .models import Profile,Projects
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer,ProjectsSerializer
 from .forms import ProfileEditForm,ProjectUploadForm
 # Create your views here.
 def home(request):
@@ -51,4 +54,11 @@ def post_site(request):
         form =ProjectUploadForm()
             
     return render(request,'uploads.html',{"form":form,})
+
+
+class ProfileList(APIView):
+    def get(self,request,format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many=True)
+        return response(serializers.data)
     
