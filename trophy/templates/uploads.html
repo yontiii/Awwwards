@@ -1,0 +1,30 @@
+{% extends 'users/base.html' %}
+{% load bootstrap4%}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-6">
+        <div class="card card-cascade  wider text-center">
+            <div class="card-body card-body-cascade ">
+                <h1 class="  text-center blue-text" style="font-family: 'Lobster Two', cursive;">
+                    Upload Site</h1> <br>
+                <br>
+                <form action="{% url 'post_site' % }" method="POST" style="color:#757575;" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+        
+                        <div class=" form-group">
+                    <input type="submit" class="btn btn-pink btn-md text-center" value="Upload"
+                        style="text-align:center;">
+            </div>
+            {{form.media}}
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

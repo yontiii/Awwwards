@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Profile,Projects
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -38,17 +38,17 @@ def profile(request,username):
 
 
 @login_required(login_url='/accounts/login/')
-def post_image(request):
+def post_site(request):
     current_user = request.user
     if request.method == 'POST':
-        upload_form = UserUploadForm(request.POST, request.FILES)
-        if upload_form.is_valid():
-            home = upload_form.save(commit=False)
+        form = ProjectUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            home = form.save(commit=False)
             home.profile =current_user
-            upload_form.save()
+            form.save()
         return redirect('home')
     else:
-        upload_form = UserUploadForm()
+        form =ProjectUploadForm()
             
-    return render(request,'uploads.html',{"upload_form":upload_form,})
+    return render(request,'uploads.html',{"form":form,})
     

@@ -8,6 +8,7 @@ urlpatterns = [
     url('^$',views.home,name='home'),
     url(r'^projects/(\d+)',views.projects,name='projects'),
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
+    url('^uploads/',views.post_site,name='post_site'),
     
 ]
 
