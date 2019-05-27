@@ -4,39 +4,39 @@
 
 <div class="container top">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
             <div class="row top-section">
-                <div class="col-md-5 profile-image">
-                
-                    <img src="{{profile_details.profile_photo.url}}" alt="profile-photo" width="100" height="150">
+                <div class="profile-image">
+
+                    <img src="{{profile_details.profile_photo.url}}" alt="profile-photo" width="150" height="150" style="margin-top:10px;">
+
+
+                    <h4 class=" text-center"><strong>{{ profile.username }}</strong></h4>
                 </div>
-                <div class="col-md-5 text-center">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <span class="username">{{ profile.username }}</span> 
-                        </li>
-                        {% if profile.username == user.username %}
-                        <li class="list-inline-item">
-                            
-                        </li>
-                        <li class="list-inline-item">
-                            <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
-                        </li>
-                        {% else %}
-                        <li class="list-inline-item">
-                            <a href="#" class="btn btn-primary">Follow</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                   
-                    <p class="font3">{{profile_details.bio|safe}}</p>
+                <div >
+
+
                     {% if profile.username == user.username %}
-                    <a class="newpost mr-5" id="post" href="{% url 'post_image' %}" >+ NEW POST</a>
-                   
-                    {% endif %} 
+                    <li class="list-inline-item">
+
+                    </li>
+                    {% else %}
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-primary">Follow</a>
+                    </li>
+                    {% endif %}
+                    </ul>
+                    {% if profile.username == user.username %}
+
+
+                    {% endif %}
                 </div>
             </div>
         </div>
+        <div class="col-md-4">  <li class="list-inline-item">
+                <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
+            </li></div>
     </div>
     <hr>
     <h3 style="text-align: center;">All Posts</h3>
@@ -45,12 +45,15 @@
         <div class="col-md-4">
             <div class="card animated zoomInRight">
                 <div class="card-img-top ">
-                    <img src="{{project.image_landing.url}}" alt="" class="rgba-red-slight i" width="100%" height="350"   >
+                    <img src="{{project.image_landing.url}}" alt="" class="rgba-red-slight i" width="100%" height="350">
                 </div>
-              
+                <div class="card-body">
+                    <h4>{{project.title}}</h4>
+                </div>
+
             </div>
         </div>
-       
+
         {% empty %}
         <div class="col-md-12">
             <h2> No Websites Created Yet</h2>
@@ -61,16 +64,18 @@
 
 <!---modal class-->
 
-<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body"><ul class="list-group">
-    
-            <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
-            <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
-          </ul>
-      </div>
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <ul class="list-group">
+
+                    <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
+                    <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}

@@ -8,7 +8,7 @@ class ProjectUploadForm(forms.ModelForm):
         fields = ('title','image_landing','description', 'link')
         
         
-class ProfileEditForm(models.ModelForm):
+class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('profile_photo','bio','website','phonenumber')
+        fields = ('profile_photo','bio','website')
