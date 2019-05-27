@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'url_or_relative_url_field',
     'tinymce',
     'bootstrap4',
-
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
