@@ -30,15 +30,11 @@ class Profile(models.Model):
         return profile
     
     @classmethod
-    def filter_by_id(cls,id):
+    def filter_by_id(cls,id): 
         profile = Profile.objects.filter(user = id).first()
         return profile
     
-    @classmethod
-    def search_by_users(cls,search_term):
-        users = cls.objects.filter(user__username__icontains=search_term)
-        return users
-    
+   
     
     def __str__(self):
         return self.bio
@@ -64,6 +60,12 @@ class Projects(models.Model):
         projects = Projects.objects.filter(profile__pk=profile)
         print(projects)
         return projects 
+    
+    @classmethod
+    def search_by_projects(cls,search_term):
+        projects = cls.objects.filter(title__icontains=search_term)
+        return projects 
+    
     
     
 
