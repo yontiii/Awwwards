@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from tinymce.models import HTMLField
 from url_or_relative_url_field.fields import URLOrRelativeURLField
 
@@ -34,12 +34,18 @@ class Profile(models.Model):
         profile = Profile.objects.filter(user = id).first()
         return profile
     
+    @classmethod
+    def search_by_users(cls,search_term):
+        users = cls.objects.filter(user__username__icontains=search_term)
+        return users
+    
+    
     def __str__(self):
         return self.bio
     
     
-class Projects(models.Model):
-    user = models.ForeignKey(User,null=True,on_delete=models.CASCADE) 
+class Projects(models.Model): 
+    profile = models.ForeignKey(User,null=True,on_delete=models.CASCADE) 
     title = models.CharField(max_length=20,blank=True)
     image_landing = models.ImageField(upload_to='landing/')
     description = HTMLField(max_length=200,blank=True)
@@ -54,14 +60,13 @@ class Projects(models.Model):
     
     
     @classmethod
-    def get_by_id(cls,id):
-        project = Projects.objects.get(user = id)
-        return profile
+    def get_profile_projects(cls,profile):
+        projects = Projects.objects.filter(profile__pk=profile)
+        print(projects)
+        return projects 
     
-    @classmethod
-    def filter_by_id(cls,id):
-        projects = Projects.objects.filter(user = id).first()
-        return projects
+    
+
     
     
 

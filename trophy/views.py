@@ -31,5 +31,5 @@ def profile(request,username):
         profile_details = Profile.filter_by_id(profile.id)
     projects = Projects.get_profile_projects(profile.id)
     
-    return render(request, 'users/profile.html',{"profile":profile,"profile_details":profile_details,"images":images}) 
+    return render(request, 'users/profile.html',{"profile":profile,"profile_details":profile_details,"projects":projects}) 
     
