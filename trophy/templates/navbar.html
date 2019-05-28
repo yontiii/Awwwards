@@ -1,63 +1,94 @@
 <style>
-#brand{
-    color:black;
-    border:2px solid  #1565C0;
+  #brand {
+    color: black;
+    border: 2px solid #1565C0;
     padding: 10px;
     border-bottom: none;
-    font-size:18px;
-}
-#brand:hover{
-    border-bottom:2px solid  #1565C0;
-    color:#64B5F6;
-}
-.accounts{
+    font-size: 18px;
+  }
+
+  #brand:hover {
+    border-bottom: 2px solid #1565C0;
+    color: #64B5F6;
+  }
+
+  .accounts {
     padding: 10px;
     letter-spacing: 1.5px;
-    color:black;
+    color: black;
     font-weight: 700
-}
-.accounts:hover{
-    text-decoration:underline;
-}
-#projects{
-    padding:20px;
-    background:#4DD0E1;
-    top:0;
+  }
+
+  .accounts:hover {
+    text-decoration: underline;
+  }
+
+  #projects {
+    padding: 20px;
+    background: #4DD0E1;
+    top: 0;
     color: white;
     font-weight: bold;
-}
-#projects:hover{
-  background:#81D4FA;
-}
+  }
 
-
+  #projects:hover {
+    background: #81D4FA;
+  }
 </style>
 <nav style="background-color:white;" class="animated slideInDown navbar-collapse">
-        <div class="navbar mx-5">
-          <div id="logo" >
-            <a href="{% url 'home' %}" id="brand"> AWWARDS</a>
-    
+  <div class="navbar mx-5">
+    <div id="logo">
+      <a href="{% url 'home' %}" id="brand"> AWWARDS</a>
+
+    </div>
+    <div class="nav-search">
+      <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input class="form-control form-control-md ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
+          name="users">
+      </form>
+    </div>
+    <div class="nav-right">
+      {% if user.is_authenticated %}
+      <ul>
+        <li class="nav-item">
+          <a href="" class="accounts">Log Out</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+
+            <!--Trigger-->
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">APIS</button>
+
+
+            <!--Menu-->
+            <div class="dropdown-menu dropdown-info">
+              <a class="dropdown-item" href="{% url 'profile_list' %}">Profiles</a>
+              <a class="dropdown-item" href="{% url 'projects_list' %}">Projects</a>
+            </div>
           </div>
-          <div class="nav-search">
-            <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="">
-              <i class="fas fa-search" aria-hidden="true"></i>
-              <input class="form-control form-control-md ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
-                name="users">
-            </form>
-          </div>
-          <div class="nav-right">
-            {% if user.is_authenticated %}
-            <a href="" class="accounts">Log Out</a>
-            {% else %}
-            <a href="" class="accounts">Sign In</a>
-            <a href="" class="accounts">Log In</a>
-            {%  endif %}
-            <a href="{% url 'profile' username=user %}" class="avatar">
-              <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="45" />
-            </a>
-            <a href="{% url 'post_site' %}" id="projects">SUBMIT PROJECT</a> 
-            
-            
-          </div>
-        </div>
-      </nav>
+        </li>
+      </ul>
+      {% else %}
+      <ul>
+        <li class="nav-item"><a href="" class="accounts">Log In</a></li>
+        <li class="nav-item">
+          <a href="{% url 'profile' username=user %}" class="avatar">
+            <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="45" />
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'post_site' %}" id="projects">SUBMIT PROJECT</a>
+        </li>
+        
+      </ul>
+      
+      {%  endif %}
+     
+      
+
+
+    </div>
+  </div>
+</nav>
