@@ -1,33 +1,102 @@
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Awwards | Give your best</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design for Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet"><br />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Awwards | Give your best</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+                rel="stylesheet">
+        <!-- Material Design for Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet"><br />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+                integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+                crossorigin="anonymous">
 </head>
 <style>
 
 </style>
-<body>
- {% include 'navbar.html' %}
 
-<div class="container">
-        <div class="view overlay">
-               <img src="{{projects.image_landing.url}}"  width='100%'
-                height= '450vh'>
-                <div class="mask flex-center rgba-pink-light">
-                        <a href="{{projects.link}}" class="btn btn-pink btn-md " target="_blank" >LIVE SITE <i class="far fa-chevron-double-right"></i>  </a>
+<body>
+        {% include 'navbar.html' %}
+
+        <div class="container">
+                <div class="view overlay">
+                        <img src="{{projects.image_landing.url}}" width='100%' height='450vh'>
+                        <div class="mask flex-center rgba-pink-light">
+                                <a href="{{projects.link}}" class="btn btn-pink btn-md " target="_blank">LIVE SITE <i
+                                                class="far fa-chevron-double-right"></i> </a>
+                        </div>
                 </div>
         </div>
-</div>
+        <div>
+                {% if user.is_authenticated %}
+                <button class="btn btn-outline-info" type="button">Rate</button>
+                {% if user.id not in auth %}
+                <br>
+                <div class="form animated slideInDown">
+                        <form action="/projects/{{projects.id}}" method="=POST">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                <button class="btn btn-outline-info" type="submit">Submit</button>
+                        </form>
+                </div>
+                {%else%}
+                <p class="alert alert-success">Thanks for your rating</p>
+                {%endif %}
+                {% else %}
+                <a href="/accounts/login/" class="btn blue-button " type="button">Log in to rate</a>
+                {% endif %}
+        </div>
+        <div class="card comments">
+                <div class="card-header">
+                        <h4> Votes Award users {{all|length}} </h4>
+                </div>
+                <div class="list-group">
+                        <ul class="list-group">
+                                {%if all%}
+
+                                <table id='comm' class="table">
+                                        <th>Voters</th>
+                                        <th>Rating</th>
+                                        <th>Stars</th>
+                                        {%for us in all%}
+                                        <tr>
+
+                                                <td>{{us.user}}</td>
+                                                <td>
+                                                        <div class="dsign">
+                                                                <a href="">{{us.design}}.0</a>
+                                                                <a href="">{{us.usability}}.0</a>
+                                                                <a class='b' href="">{{us.content}}.0</a>
+
+
+                                                        </div>
+                                                </td>
+
+                                                <td><b class="tt"><i style="color:red" class="far fa-star "></i><i
+                                                                        style="color:red" class="far fa-star"></i><i
+                                                                        class="far fa-star"></i></b></td>
+                                        </tr>
+                                        {%endfor%}
+
+                                </table>
+
+                                {%else%}
+                                <li class="list-group-item alert alert-info">No votes Available</li>
+
+                                {%endif%}
+                        </ul>
+
+                </div>
+
+        </div>
+
+        </div>
 
 
 
@@ -59,15 +128,20 @@
 
 
 
-  <!-- jQuery -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- Popper.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <!-- Material Design for Bootstrap -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/js/mdb.min.js"></script>
-  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+
+        <!-- jQuery -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Popper.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <!-- Material Design for Bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/js/mdb.min.js"></script>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
+
 </html>

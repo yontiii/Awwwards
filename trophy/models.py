@@ -11,19 +11,14 @@ from url_or_relative_url_field.fields import URLOrRelativeURLField
 class Projects(models.Model): 
     user = models.ForeignKey(User,null=True,on_delete=models.CASCADE) 
     title = models.CharField(max_length=20,blank=True)
+    design=models.IntegerField(default=0)
+    usability=models.IntegerField(default=0)
+    content=models.IntegerField(default=0)
     image_landing = models.ImageField(upload_to='landing/')
     description = HTMLField(max_length=200,blank=True)
     link = URLOrRelativeURLField(max_length=200)
     pub_date = models.DateTimeField(auto_now_add=True)
     
-
-    
-    
-    @classmethod
-    def get_profile_projects(cls,profile):
-        projects = Projects.objects.filter(profile__pk=profile)
-        print(projects)
-        return projects 
     
     @classmethod
     def search_by_projects(cls,search_term):

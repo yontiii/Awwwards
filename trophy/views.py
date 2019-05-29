@@ -23,6 +23,7 @@ def projects(request,project_id):
     try:
         projects = Projects.objects.get(id=project_id)
         all = Rates.objects.filter(project=project_id) 
+        print(all)
     except Exception as e:
         raise Http404() 
     
@@ -61,7 +62,7 @@ def projects(request,project_id):
         design.append(i.design)
         content.append(i.content) 
         
-    if len(usability) > 0 or len(design) or len(content):
+    if len(usability) > 0 or len(design)>0 or len(content)>0:
         average_usability = round(sum(usability)/len(usability),1) 
         average_design = round(sum(design)/len(design),1)
         average_content = round(sum(content)/len(content),1) 
@@ -69,9 +70,10 @@ def projects(request,project_id):
         average_rating = round((average_content+average_design+average_usability)/3,1) 
     
     else:
-        average_content=0
-        average_design=0
-        average_usability=0
+        average_content=0.0
+        average_design=0.0
+        average_usability=0.0
+        average_rating = 0.0
         
     '''
     To make sure that a user only votes once
@@ -91,10 +93,10 @@ def projects(request,project_id):
         'usability':average_usability,
         'design':average_design,
         'content':average_content,
-        'average':average_rating,
+        'average_rating':average_rating,
         'auth':auth,
         'all':all,
-     'average':average,
+        'average':average,
         
     }
     
