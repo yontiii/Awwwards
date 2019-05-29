@@ -30,6 +30,21 @@ else:
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
+
+
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'fu0hfd1-u_c+4479umw#mgb-hu42lwql_&-cku2$5_4)(0*n%2'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
