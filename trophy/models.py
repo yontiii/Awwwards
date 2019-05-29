@@ -80,7 +80,7 @@ class Rates(models.Model):
     
 class Comments(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    comment = models.TextField(max_length=400)
+    comments = models.TextField(max_length=400)
     pro_id = models.IntegerField(default=0) 
     
     

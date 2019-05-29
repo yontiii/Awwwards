@@ -97,7 +97,33 @@
         </div>
 
         </div>
-
+        div class="row">
+        <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div class="ments">
+              <p id='om'>comments <i class="far fa-comments"></i></p>
+              <hr>
+              {%if comments%}
+              {%for con in comments%}
+              <p> <i class="fas fa-quote-left"></i>{{con.comment}}</p>
+              <i>by -- {{con.user}}</i>
+              {%endfor%}
+              {%else%}
+              <p class="alert alert-info">Be the 1st to comment</p>
+              {%endif%}
+            </div>
+            {%if user.is_authenticated%}
+          
+            <form class="" action="/projects/{{project.id}}/" method="post">
+              {%csrf_token%}
+              {% bootstrap_form reviews %}
+              <button id='area' class="btn btn-outline-default" type="submit" name="button">Comment</button>
+            </form>
+        
+            {%else%}
+            <a href="/accounts/login/"><button class="btn btn-outline-default" type="submit" name="button">Sign in To leave a comment</button></a>
+            {%endif%}
+          </div>
 
 
 

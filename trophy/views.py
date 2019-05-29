@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import Http404
-from .models import Profile,Projects,Rates
+from .models import Profile,Projects,Rates,Comments
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -66,7 +66,7 @@ def projects(request,project_id):
         average_usability = round(sum(usability)/len(usability),1) 
         average_design = round(sum(design)/len(design),1)
         average_content = round(sum(content)/len(content),1) 
-        
+            
         average_rating = round((average_content+average_design+average_usability)/3,1) 
     
     else:
@@ -82,27 +82,23 @@ def projects(request,project_id):
     arr1 = []
     for use in votes:
         arr1.append(use.user_id) 
-        
+                
     auth = arr1
        
        
     if request.method == 'POST':
-        review = ReviewForm(request.POST)
-        if review.is_valid():
-            comment = review.save(commit=False)
+        reviews = ReviewForm(request.POST)
+        if reviews.is_valid():
+            comment = reviews.save(commit=False)
             comment.user = request.user
             comment.save()
             return redirect ('projects',project_id)
         else:
-            review = ReviewForm()
+            reviews = ReviewForm()
             
-        try:
-            user_comment = Comments.objects.filter(pro_id=project_id)
-        except Exception as e:
-            raise Http404()
-         
         
-    
+    user_comments = Comments.objects.filter(pro_id=project_id)
+       
     context = {
         'projects':projects,
         'form':form,
@@ -113,7 +109,8 @@ def projects(request,project_id):
         'auth':auth,
         'all':all,
         'average':average,
-        'comments':user_comment,
+        'comments':user_comments,
+        'reviews':reviews,
         
     }
     
