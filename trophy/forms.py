@@ -17,3 +17,4 @@ class VotesForm(forms.ModelForm):
     class Meta:
         model = Rates
         fields = ('design','usability','content')
+        

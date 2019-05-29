@@ -75,7 +75,14 @@ class Rates(models.Model):
     usability = models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10)])
     content = models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10)]) 
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    project = models.IntegerField(default=0)
+    project = models.IntegerField(default=0) 
+    
+    
+class Comments(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    comment = models.TextField(max_length=400)
+    pro_id = models.IntegerField(default=0) 
+    
     
     
 

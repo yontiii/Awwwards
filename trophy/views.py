@@ -46,7 +46,7 @@ def projects(request,project_id):
             rate.user = request.user
             rate.project = project_id
             rate.save()
-            return redirect('projects',project_id)
+        return redirect('projects',project_id)
         
     else:
         form = VotesForm() 
@@ -84,7 +84,23 @@ def projects(request,project_id):
         arr1.append(use.user_id) 
         
     auth = arr1
-        
+       
+       
+    if request.method == 'POST':
+        review = ReviewForm(request.POST)
+        if review.is_valid():
+            comment = review.save(commit=False)
+            comment.user = request.user
+            comment.save()
+            return redirect ('projects',project_id)
+        else:
+            review = ReviewForm()
+            
+        try:
+            user_comment = Comments.objects.filter(pro_id=project_id)
+        except Exception as e:
+            raise Http404()
+         
         
     
     context = {
@@ -97,6 +113,7 @@ def projects(request,project_id):
         'auth':auth,
         'all':all,
         'average':average,
+        'comments':user_comment,
         
     }
     

@@ -39,7 +39,7 @@
                 {% if user.id not in auth %}
                 <br>
                 <div class="form animated slideInDown">
-                        <form action="/projects/{{projects.id}}" method="=POST">
+                        <form action="{ % url 'projects' %}" method="POST">
                                 {% csrf_token %}
                                 {% bootstrap_form form %}
                                 <button class="btn btn-outline-info" type="submit">Submit</button>
