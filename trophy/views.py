@@ -57,11 +57,45 @@ def projects(request,project_id):
     content = [] 
     
     for i in votes:
+        usability.append(i.usability)
+        design.append(i.design)
+        content.append(i.content) 
+        
+    if len(usability) > 0 or len(design) or len(content):
+        average_usability = round(sum(usability)/len(usability),1) 
+        average_design = round(sum(design)/len(design),1)
+        average_content = round(sum(content)/len(content),1) 
+        
+        average_rating = round((average_content+average_design+average_usability)/3,1) 
+    
+    else:
+        average_content=0
+        average_design=0
+        average_usability=0
+        
+    '''
+    To make sure that a user only votes once
+    '''
+    
+    arr1 = []
+    for use in votes:
+        arr1.append(use.user_id) 
+        
+    auth = arr1
         
         
     
     context = {
         'projects':projects,
+        'form':form,
+        'usability':average_usability,
+        'design':average_design,
+        'content':average_content,
+        'average':average_rating,
+        'auth':auth,
+        'all':all,
+     'average':average,
+        
     }
     
     return render(request,'single_post.html',context) 
