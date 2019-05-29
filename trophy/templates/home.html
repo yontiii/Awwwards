@@ -20,7 +20,8 @@ new WOW().init()
 <div class="card-body" style="border:2px #00BCD4;">
     <a href="{% url 'projects' project.pk %}"><h5 class="strong-text"> <strong>{{project.title}}</strong> </h5> </a> <hr class="bg-info">
     <p class="black-text pull-right">{{project.pub_date|date:"F d,Y"}}</p>
-    <h6>By  {{project.user}}</h6>
+    <h6>By  {{project.profile}}</h6>
+ 
 </div>
 
 </div>

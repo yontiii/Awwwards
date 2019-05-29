@@ -18,7 +18,14 @@
                 crossorigin="anonymous">
 </head>
 <style>
-
+.rates{
+    top:50%;
+    left:50%;
+    position: absolute;
+    transform: translate(-50,-50);
+    background:#FAFAFA;
+  
+  }
 </style>
 
 <body>
@@ -26,24 +33,68 @@
         <div class="container">
                 <div class="view overlay">
                         <img src="{{projects.image_landing.url}}" width='100%' height='450vh'>
+                        <div class="rates">
+                                
+                        </div>
+                        
                         <div class="mask flex-center rgba-black-light">
 
-                                <a href="{{projects.link}}" class="btn btn-pink btn-md " target="_blank">LIVE SITE <i
-                                                class="far fa-chevron-double-right"></i> </a>
+
+                                
                         </div>
+                </div>
+                <br>
+                <div class="row">
+                        <div class="col-md-3">
+                                <h3>Content</h3> <hr class="bg-default"> <br> <h4>{{content}}</h4>
+                        </div>
+                        <div class="col-md-3">
+                                        <h3>Usability</h3> <hr class="bg-success"> <br> <h4>{{usability}}</h4>
+                        </div>
+                        <div class="col-md-3">
+                                        <h3>Design</h3> <hr class="bg-info"> <br> <h4>{{design}}</h4>
+                        </div>
+                        <div class="col-md-3">
+                                        <h3>Average</h3> <hr class="bg-danger"> <br> <h4>{{average}}</h4>
+                        </div>
+                       
+                     
+                       
+                      
                 </div>
 
                 {% if user.is_authenticated %}
-                <button class="btn btn-outline-info" type="button">Rate</button>
+                <button class="btn btn-outline-info" type="button" data-toggle="modal" data-target="#VotesForm">Rate</button>
+                <a href="{{projects.link}}" class="btn btn-pink btn-md pull-right " target="_blank">LIVE SITE <i
+                        class="far fa-chevron-double-right"></i> </a>
                 {% if user.id not in auth %}
                 <br>
+               
+<div class="modal fade" id="VotesForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Vote</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
                 <div class="form animated slideInDown">
-                        <form action="/projects/{{projects.id}}" method="POST">
-                                {% csrf_token %}
-                                {% bootstrap_form form %}
-                                <button class="btn btn-outline-info" type="submit">Submit</button>
-                        </form>
-                </div>
+                                <form action="/projects/{{projects.id}}" method="POST">
+                                        {% csrf_token %}
+                                        {% bootstrap_form form %}
+                                        <button class="btn btn-outline-info modal-footer d-flex justify-content-center" type="submit">Submit <i class="fas fa-paper-plane-o ml-1"></i> </button>
+                                </form>
+                        </div>
+      </div>
+ 
+      </div>
+    </div>
+  </div>
+</div>
+
                 {%else%}
                 <p class="alert alert-success">Thanks for your rating</p>
                 {%endif %}
@@ -113,36 +164,6 @@
                  <!-- Footer -->
               
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

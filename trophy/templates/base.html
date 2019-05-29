@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Awwards | Give your best</title>
+  <link rel="icon" href="https://images.pexels.com/photos/2098604/pexels-photo-2098604.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" type="image/ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -50,19 +51,38 @@
     flex-direction: row;
     justify-content: space-between;
   }
+  #one:hover{
+    background: #F44336;
+    color: white;
+    cursor: pointer;
+  }
+
+  #next:hover{
+    background: #FFA726;
+    color: white;
+    cursor: pointer;
+    
+  }
+
+  #three:hover{
+    background:  #00ACC1;
+    color: white;
+    cursor: pointer;
+    
+  }
+
 </style>
 
 <body>
 
   {%  include 'navbar.html' %}
  <div class="intro">             
-    <div class="box " style="margin-right:-80px;">
-         <hr class="hr-default">
+    <div class="box animated slideInDown">
+       
          <h3></h3>
-
-       <p class="logos white-text " style="margin-left:-100px;padding: 10px; border: 2px solid #F44336;border-radius:200px;font-weight:bolder;font-size: 30px; ">DESIGN</p>
-       <p class="logos white-text " style="margin-left:10px;padding: 10px; border: 2px solid #FFA726;border-radius:200px;font-weight:bolder; font-size: 30px;">USABILITY</p>
-       <p class="logos white-text " style="margin-left:10px;padding: 10px;border: 2px solid #00ACC1;border-radius:200px;font-weight:bolder; font-size: 30px;">CONTENT</p>
+       <p class="logos white-text " id="one" style="padding: 20px; border: 2px solid #F44336;border-radius:200px;font-weight:bolder;font-size: 30px; margin-left: -200px;">DESIGN</p>
+       <p class="logos white-text "  id="next"  style="padding: 20px; border: 2px solid #FFA726;border-radius:200px;font-weight:bolder; font-size: 30px;">USABILITY</p>
+       <p class="logos white-text " id="three" style="padding: 20px;border: 2px solid #00ACC1;border-radius:200px;font-weight:bolder; font-size: 30px;">CONTENT</p>
 </div>
  </div>
 {% block content %}{% endblock %}
