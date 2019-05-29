@@ -12,14 +12,14 @@ new WOW().init()
 <div class="card-group wow fadeInLeft"  style="margin:2%;" data-aos='fade-up'>
         <div class="view overlay zoom ">
                 <img src="{{project.image_landing.url}}" class="card-img-top">
-                <div class="mask flex-center rgba-cyan-strong">
+                <div class="mask flex-center rgba-black-light">
                     <a href="{{project.link}}" class="btn btn-pink" target="_blank" >VIEW <i class="far fa-chevron-double-right"></i>  </a>
                 </div>
         </div>
 
-<div class="card-body">
+<div class="card-body" style="border:2px #00BCD4;">
     <a href="{% url 'projects' project.pk %}"><h5 class="strong-text"> <strong>{{project.title}}</strong> </h5> </a>
-    <h6>By  {{project.user}}</h6>
+     <a href="{% url 'profile' username=project.user.username %}"><h6>By  {{project.user}}</h6></a> 
 </div>
 
 </div>

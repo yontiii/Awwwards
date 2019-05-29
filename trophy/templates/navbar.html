@@ -34,13 +34,27 @@
   #projects:hover {
     background: #81D4FA;
   }
+ 
 </style>
-<nav style="background-color:white;" class="animated slideInDown navbar-collapse">
+<nav style="background-color:white;" class="animated slideInDown navbar-collapse navbar-expand-lg sticky-top ">
   <div class="navbar mx-5">
     <div id="logo">
       <a href="{% url 'home' %}" id="brand"> AWWARDS</a>
 
     </div>
+      <div class="dropdown dropleft">
+
+        <!--Trigger-->
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">APIS</button>
+
+
+        <!--Menu-->
+        <div class="dropdown-menu dropdown-info">
+          <a class="dropdown-item" href="{% url 'profile_list' %}">Profiles</a>
+          <a class="dropdown-item" href="{% url 'projects_list' %}">Projects</a>
+        </div>
+      </div>
     <div class="nav-search">
       <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="">
         <i class="fas fa-search" aria-hidden="true"></i>
@@ -50,39 +64,23 @@
     </div>
     <div class="nav-right">
       {% if user.is_authenticated %}
-      <ul>
-        <li class="nav-item">
+
+      
           <a href="" class="accounts">Log Out</a>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-
-            <!--Trigger-->
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">APIS</button>
-
-
-            <!--Menu-->
-            <div class="dropdown-menu dropdown-info">
-              <a class="dropdown-item" href="{% url 'profile_list' %}">Profiles</a>
-              <a class="dropdown-item" href="{% url 'projects_list' %}">Projects</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-      {% else %}
-      <ul>
-        <li class="nav-item"><a href="" class="accounts">Log In</a></li>
-        <li class="nav-item">
-          <a href="{% url 'profile' username=user %}" class="avatar">
-            <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="45" />
+    
+        <a href="{% url 'profile' username=user %}" class="avatar">
+            <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="60" />
           </a>
-        </li>
-        <li class="nav-item">
+ 
+   
           <a href="{% url 'post_site' %}" id="projects">SUBMIT PROJECT</a>
-        </li>
-        
-      </ul>
+    
+   
+      {% else %}
+ 
+  <a href="" class="accounts">Log In</a>
+      
+
       
       {%  endif %}
      
