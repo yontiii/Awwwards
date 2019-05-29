@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import Http404
 from .models import Profile,Projects,Rates
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -19,7 +20,45 @@ def home(request):
 
 
 def projects(request,project_id):
-    projects = Projects.objects.get(id=project_id)
+    try:
+        projects = Projects.objects.get(id=project_id)
+        all = Rates.objects.filter(project=project_id) 
+    except Exception as e:
+        raise Http404() 
+    
+    # single user votes count
+    count = 0
+    for i in all:
+        count+=i.usability
+        count+=i.design
+        count+=i.content
+    
+    if count > 0:
+        average = round(count/3,1)
+    else:
+        average = 0
+        
+    if request.method == 'POST':
+        form = VotesForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = request.user
+            rate.project = project_id
+            rate.save()
+            return redirect('projects',project_id)
+        
+    else:
+        form = VotesForm() 
+        
+    # The votes logic
+    votes = Rates.objects.filter(project=project_id)
+    usability = []
+    design = []
+    content = [] 
+    
+    for i in votes:
+        
+        
     
     context = {
         'projects':projects,
