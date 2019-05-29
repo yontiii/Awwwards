@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 from .serializer import ProfileSerializer,ProjectsSerializer
-from .forms import ProfileEditForm,ProjectUploadForm,VotesForm
+from .forms import ProfileEditForm,ProjectUploadForm,VotesForm,ReviewForm
 # Create your views here.
 def home(request):
     projects = Projects.objects.all()
@@ -85,9 +85,9 @@ def projects(request,project_id):
                 
     auth = arr1
        
-       
+    reviews = ReviewForm(request.POST)
     if request.method == 'POST':
-        reviews = ReviewForm(request.POST)
+        
         if reviews.is_valid():
             comment = reviews.save(commit=False)
             comment.user = request.user

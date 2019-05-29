@@ -23,23 +23,22 @@
 
 <body>
         {% include 'navbar.html' %}
-
         <div class="container">
                 <div class="view overlay">
                         <img src="{{projects.image_landing.url}}" width='100%' height='450vh'>
-                        <div class="mask flex-center rgba-pink-light">
+                        <div class="mask flex-center rgba-black-light">
+
                                 <a href="{{projects.link}}" class="btn btn-pink btn-md " target="_blank">LIVE SITE <i
                                                 class="far fa-chevron-double-right"></i> </a>
                         </div>
                 </div>
-        </div>
-        <div>
+
                 {% if user.is_authenticated %}
                 <button class="btn btn-outline-info" type="button">Rate</button>
                 {% if user.id not in auth %}
                 <br>
                 <div class="form animated slideInDown">
-                        <form action="{ % url 'projects' %}" method="POST">
+                        <form action="/projects/{{projects.id}}" method="POST">
                                 {% csrf_token %}
                                 {% bootstrap_form form %}
                                 <button class="btn btn-outline-info" type="submit">Submit</button>
@@ -49,81 +48,72 @@
                 <p class="alert alert-success">Thanks for your rating</p>
                 {%endif %}
                 {% else %}
-                <a href="/accounts/login/" class="btn blue-button " type="button">Log in to rate</a>
+                <a href="/accounts/login/" class="btn btn-outline-info ">Log in to rate</a>
                 {% endif %}
         </div>
         <div class="card comments">
                 <div class="card-header">
-                        <h4> Votes Award users {{all|length}} </h4>
+                        <h4> Total Votes: {{all|length}} </h4>
                 </div>
                 <div class="list-group">
                         <ul class="list-group">
                                 {%if all%}
-
                                 <table id='comm' class="table">
                                         <th>Voters</th>
                                         <th>Rating</th>
-                                        <th>Stars</th>
-                                        {%for us in all%}
-                                        <tr>
-
-                                                <td>{{us.user}}</td>
+                                        {%for you in all%}<tr>
+                                                <td> <img src="{{you.user.profile.profile_photo.url}}" alt="" width='30px' height="30px">  {{you.user}}</td>
                                                 <td>
-                                                        <div class="dsign">
-                                                                <a href="">{{us.design}}.0</a>
-                                                                <a href="">{{us.usability}}.0</a>
-                                                                <a class='b' href="">{{us.content}}.0</a>
-
-
+                                                        <div class="design">
+                                                                <a href="" class="scores">{{you.design}}.0</a>
+                                                                <a href="">{{you.usability}}.0</a>
+                                                                <a class='b' href="">{{you.content}}.0</a>
                                                         </div>
                                                 </td>
-
-                                                <td><b class="tt"><i style="color:red" class="far fa-star "></i><i
-                                                                        style="color:red" class="far fa-star"></i><i
-                                                                        class="far fa-star"></i></b></td>
-                                        </tr>
-                                        {%endfor%}
-
+                                                {%endfor%}
                                 </table>
-
                                 {%else%}
                                 <li class="list-group-item alert alert-info">No votes Available</li>
-
                                 {%endif%}
                         </ul>
-
                 </div>
-
         </div>
-
         </div>
-        div class="row">
-        <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <div class="ments">
-              <p id='om'>comments <i class="far fa-comments"></i></p>
-              <hr>
-              {%if comments%}
-              {%for con in comments%}
-              <p> <i class="fas fa-quote-left"></i>{{con.comment}}</p>
-              <i>by -- {{con.user}}</i>
-              {%endfor%}
-              {%else%}
-              <p class="alert alert-info">Be the 1st to comment</p>
-              {%endif%}
-            </div>
-            {%if user.is_authenticated%}
-          
-            <form class="" action="/projects/{{project.id}}/" method="post">
-              {%csrf_token%}
-              {% bootstrap_form reviews %}
-              <button id='area' class="btn btn-outline-default" type="submit" name="button">Comment</button>
-            </form>
-        
-            {%else%}
-            <a href="/accounts/login/"><button class="btn btn-outline-default" type="submit" name="button">Sign in To leave a comment</button></a>
-            {%endif%}
-          </div>
+        </div>
+        <div>
+                
+        <div class="footer">
+                <!-- Footer -->
+              <footer class="page-footer font-small unique-color-dark pt-4">
+              
+                  <!-- Footer Elements -->
+                  <div class="container">
+                 
+                    <!-- Call to action -->
+                    <ul class="list-unstyled list-inline text-center py-2">
+                      <li class="list-inline-item">
+                        <h5 class="mb-1">Awwards <i class="fas fa-trophy"></i>  <br> Innovate,Create and Inspire</h5>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="/accounts/register/" class="btn btn-outline-white btn-rounded">Sign up!</a>
+                      </li>
+                    </ul>
+                    <!-- Call to action -->
+                 
+                  </div>
+                  <!-- Footer Elements -->
+                 
+                  <!-- Copyright -->
+                  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+                    <a > John Muasa</a>
+                  </div>
+                  <!-- Copyright -->
+                 
+                 </footer>
+                 <!-- Footer -->
+              
+              </div>
+
 
 
 
