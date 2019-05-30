@@ -176,3 +176,18 @@ class ProjectsList(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
+
+
+def search_results(request):
+    if 'titles' in request.GET and request.GET['titles']:
+        search_term = request.GET.get("titles")
+        searched_projects = Projects.search_by_projects(search_term)
+        
+        message = f'{search_term}'
+        
+        return render(request,'search.html',{"message":message,"projects":searched_projects})
+    
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html',{"message":message,"projects":searched_projects})

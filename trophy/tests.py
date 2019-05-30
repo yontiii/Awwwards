@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Profile,Projects
+from .models import Profile,Projects,Rates
 
 
 class ProfileTestClass(TestCase):
@@ -36,8 +36,13 @@ class ProfileTestClass(TestCase):
     def test_posts(self):
         posts = Posts.posts()
         self.assertTrue(len(posts)>0)
-Collapse
 
 
-
-Message Input
+class RatesTestClass(TestCase):
+    def setUp(self):
+        self.user = User(username='john',email='john@gmail.com',password='12345')
+        
+        self.rate = Rates(design=10,usability=10,content=10,user=self.user,project=10)
+        self.rate.save()
+        
+        self.assertTrue(isinstance(self.rate,Rate))        

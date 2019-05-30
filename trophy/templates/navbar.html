@@ -56,17 +56,17 @@
         </div>
       </div>
     <div class="nav-search">
-      <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="">
+      <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="{% url 'search_results' %}">
         <i class="fas fa-search" aria-hidden="true"></i>
         <input class="form-control form-control-md ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
-          name="users">
+          name="titles">
       </form>
     </div>
     <div class="nav-right">
       {% if user.is_authenticated %}
 
       
-          <a href="" class="accounts">Log Out</a>
+          <a href="/logout/" class="accounts">Log Out</a>
     
         <a href="{% url 'profile' username=user %}" class="avatar">
             <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="60" />
@@ -78,7 +78,7 @@
    
       {% else %}
  
-  <a href="" class="accounts">Log In</a>
+  <a href="/accounts/login" class="accounts">Log In</a>
       
 
       
